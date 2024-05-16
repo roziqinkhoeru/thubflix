@@ -1,0 +1,11 @@
+# DAY 1
+rekomendasi tech stack
+db = mySQL, postgreSQL
+serverless = drezzle, primsa
+
+apa itu tRPC?
+perbedaan Rest API dengan tRPC
+
+public untuk menyimpan asset statis
+
+latihan by project sembari lihat dokumentasi, karena terkadang dokumentasi terlalu banyak informasi, yang menjadikan kebingungan untuk berbagai orang
