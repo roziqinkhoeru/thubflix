@@ -9,3 +9,13 @@ perbedaan Rest API dengan tRPC
 public untuk menyimpan asset statis
 
 latihan by project sembari lihat dokumentasi, karena terkadang dokumentasi terlalu banyak informasi, yang menjadikan kebingungan untuk berbagai orang
+
+# DAY 2
+styling using shadcn/ui
+configure and installing tailwind prettier
+set config on .prettierrc with:
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindConfig": "./tailwind.config.ts",
+  "tailwindFunctions": ["clsx"]
+}
