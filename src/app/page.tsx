@@ -1,5 +1,7 @@
 "use client";
 
+import ItemCard from "@/components/shared/ItemCard";
+import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,17 +11,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import {
   Select,
   SelectContent,
@@ -27,140 +21,69 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+
 import * as React from "react";
 
-const NAVITEMS: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
+interface Dogs {
+  bred_for: string;
+  breed_group: string;
+  height: { imperial: string; metric: string };
+  id: number;
+  image: {
+    id: string;
+    width: number;
+    height: number;
+    url: string;
+  };
+  life_span: string;
+  name: string;
+  origin: string;
+  reference_image_id: string;
+  temperament: string;
+  weight: { imperial: string; metric: string };
+}
 
 export default function Home() {
+  const [dogs, setDogs] = React.useState<Dogs[]>([]);
+  const [reqLimit, setReqLimit] = React.useState<number>(10);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
+  const fetchDog = async () => {
+    setIsLoading(true);
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_DOG_API_KEY;
+      if (!apiKey) {
+        throw new Error("API key is missing");
+      }
+
+      const response = await fetch(
+        `https://api.thedogapi.com/v1/breeds?limit=${reqLimit}`,
+        {
+          headers: {
+            "x-api-key": apiKey,
+          },
+        },
+      );
+
+      const data = await response.json();
+      console.log("🚀 ~ fetchDog ~ data:", data);
+      setDogs(data);
+    } catch (error) {
+      console.error("🚀 ~ fetchDog ~ error", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchDog();
+  }, [reqLimit]);
+
   return (
     <>
-      <nav className="sticky inset-x-0 top-0 w-full bg-white shadow">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-between py-4">
-            <Link href="/" className="block">
-              Thubflix
-            </Link>
-            <div className="">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                      Getting started
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                        <li className="row-span-3">
-                          <NavigationMenuLink asChild>
-                            <a
-                              className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
-                              href="/"
-                            >
-                              <div className="mb-2 mt-4 text-lg font-medium">
-                                shadcn/ui
-                              </div>
-                              <p className="text-muted-foreground text-sm leading-tight">
-                                Beautifully designed components that you can
-                                copy and paste into your apps. Accessible.
-                                Customizable. Open Source.
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        </li>
-                        <ListItem href="/docs" title="Introduction">
-                          Re-usable components built using Radix UI and Tailwind
-                          CSS.
-                        </ListItem>
-                        <ListItem
-                          href="/docs/installation"
-                          title="Installation"
-                        >
-                          How to install dependencies and structure your app.
-                        </ListItem>
-                        <ListItem
-                          href="/docs/primitives/typography"
-                          title="Typography"
-                        >
-                          Styles for headings, paragraphs, lists...etc
-                        </ListItem>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                        {NAVITEMS.map((navItem) => (
-                          <ListItem
-                            key={navItem.title}
-                            title={navItem.title}
-                            href={navItem.href}
-                          >
-                            {navItem.description}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Documentation
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
-            <div className="">
-              <Button asChild>
-                <Link href="/login">Login</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       <main className="container mx-auto mt-10 max-w-7xl px-6">
-        <section className="mx-auto w-full">
+        <section className="mx-auto mb-12 w-full">
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle>Create project</CardTitle>
@@ -198,33 +121,35 @@ export default function Home() {
             </CardFooter>
           </Card>
         </section>
+        <section className="my-12">
+          <div className="mb-10 grid grid-cols-12 gap-5">
+            {isLoading && dogs.length === 0 && (
+              <div className="col-span-12 flex items-center justify-center">
+                <p className="text-lg font-semibold">Loading...</p>
+              </div>
+            )}
+            {dogs?.map((dog) => (
+              <div className="col-span-3" key={dog?.id}>
+                <ItemCard
+                  name={dog?.name}
+                  bredFor={dog?.bred_for ?? "-"}
+                  imageUrl={dog?.image?.url}
+                  temper={dog?.temperament}
+                  breedGroup={dog?.breed_group ?? "-"}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center">
+            <Button
+              onClick={() => setReqLimit((prev) => prev + 10)}
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Load more"}
+            </Button>
+          </div>
+        </section>
       </main>
     </>
   );
 }
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
-            className,
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
