@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-background h-full min-h-screen w-full overflow-hidden font-sans antialiased",
+          "h-full min-h-screen w-full overflow-x-hidden bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
