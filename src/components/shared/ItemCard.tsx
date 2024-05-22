@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,8 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ItemCardProps {
+  id: string;
   name: string;
   imageUrl: string;
   bredFor: string;
@@ -18,6 +21,7 @@ interface ItemCardProps {
 }
 
 function ItemCard({
+  id,
   name,
   imageUrl,
   bredFor,
@@ -49,7 +53,7 @@ function ItemCard({
           <span className="font-semibold">Bred For :</span> {bredFor}
         </p>
         <p className="mb-3 text-sm font-semibold text-slate-600">Temper :</p>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
           {listOfTemper?.map((temperament, index) => (
             <Badge key={index} variant="outline" className="text-slate-700">
               {temperament}
@@ -57,7 +61,13 @@ function ItemCard({
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between"></CardFooter>
+      <CardFooter className="flex justify-between">
+        <Button asChild>
+          <Link href={`/dog/${id}`} className="w-full">
+            View more
+          </Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
