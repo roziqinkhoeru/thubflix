@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -34,10 +36,9 @@ import * as React from "react";
 
 const NAVITEMS: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    title: "Dog Page",
+    href: "/dog",
+    description: "Fetches data from an external API and displays it in a card.",
   },
   {
     title: "Hover Card",
@@ -125,7 +126,7 @@ function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                  <NavigationMenuTrigger>Features</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       {NAVITEMS.map((navItem) => (
@@ -159,62 +160,63 @@ function Navbar() {
               </DialogTrigger>
               <DialogContent className="sm:max-w-lg">
                 <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
+                  <DialogTitle>Welcome back!</DialogTitle>
                   <DialogDescription>
-                    Make changes to your profile here. Click save when
-                    you&apos;re done.
+                    Log in to your account or create a new one.
                   </DialogDescription>
                 </DialogHeader>
-                <Tabs defaultValue="account" className="w-full">
+                <Tabs defaultValue="login" className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
+                    <TabsTrigger value="login">Login</TabsTrigger>
+                    <TabsTrigger value="register">Password</TabsTrigger>
                   </TabsList>
-                  <TabsContent value="account">
+                  <TabsContent value="login">
                     <Card>
                       <CardHeader>
-                        <CardTitle>Account</CardTitle>
+                        <CardTitle>Sign in</CardTitle>
                         <CardDescription>
-                          Make changes to your account here. Click save when
-                          you&apos;re done.
+                          Sign in to your account using your credentials.
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-2">
                         <div className="space-y-1">
-                          <Label htmlFor="name">Name</Label>
-                          <Input id="name" defaultValue="Pedro Duarte" />
+                          <Label htmlFor="username">Username</Label>
+                          <Input id="name" placeholder="Input your username" />
                         </div>
                         <div className="space-y-1">
-                          <Label htmlFor="username">Username</Label>
-                          <Input id="username" defaultValue="@peduarte" />
+                          <Label htmlFor="password">Password</Label>
+                          <Input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                          />
                         </div>
                       </CardContent>
                       <CardFooter>
-                        <Button>Save changes</Button>
+                        <Button>Sign in</Button>
                       </CardFooter>
                     </Card>
                   </TabsContent>
-                  <TabsContent value="password">
+                  <TabsContent value="register">
                     <Card>
                       <CardHeader>
-                        <CardTitle>Password</CardTitle>
+                        <CardTitle>Register</CardTitle>
                         <CardDescription>
-                          Change your password here. After saving, you&apo;ll be
-                          logged out.
+                          Create a new account using your email address.
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-2">
                         <div className="space-y-1">
-                          <Label htmlFor="current">Current password</Label>
-                          <Input id="current" type="password" />
-                        </div>
-                        <div className="space-y-1">
-                          <Label htmlFor="new">New password</Label>
-                          <Input id="new" type="password" />
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="Input your email"
+                          />
                         </div>
                       </CardContent>
                       <CardFooter>
-                        <Button>Save password</Button>
+                        <Button>Register</Button>
                       </CardFooter>
                     </Card>
                   </TabsContent>
@@ -230,12 +232,14 @@ function Navbar() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ComponentPropsWithoutRef<"a"> & {
+    href: string;
+  }
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -247,7 +251,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
