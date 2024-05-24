@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -16,7 +15,7 @@ interface ItemCardProps {
   name: string;
   imageUrl: string;
   bredFor: string;
-  temper: string;
+  origin: string;
   breedGroup: string;
 }
 
@@ -25,41 +24,43 @@ function ItemCard({
   name,
   imageUrl,
   bredFor,
-  temper,
+  origin,
   breedGroup,
 }: ItemCardProps) {
-  const listOfTemper = temper?.split(",");
+  const listOfOrigin = origin !== "" ? origin?.split(",") : null;
 
   return (
     <Card className="w-full">
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>
-          <span className="font-semibold">Breed :</span> {breedGroup}
-        </CardDescription>
+      <CardHeader className="pb-3">
+        <CardTitle className="line-clamp-2 text-xl">{name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="mb-3">
-          <Image
-            quality={95}
-            src={imageUrl}
-            alt={`Cat ${name}`}
-            width={200}
-            height={200}
-            className="h-auto w-full rounded-lg"
-          />
+        <div className="mb-3.5">
+          <figure className="h-40 w-full overflow-hidden rounded-md">
+            <Image
+              quality={95}
+              src={imageUrl}
+              alt={`Cat ${name}`}
+              width={200}
+              height={200}
+              className="h-full w-full object-cover object-top"
+            />
+          </figure>
         </div>
-        <p className="mb-3 text-sm text-slate-600">
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          {listOfOrigin &&
+            listOfOrigin?.map((original, index) => (
+              <Badge key={index} variant="outline" className="text-slate-700">
+                {original}
+              </Badge>
+            ))}
+        </div>
+        <p className="mb-2 text-sm text-slate-600">
           <span className="font-semibold">Bred For :</span> {bredFor}
         </p>
-        <p className="mb-3 text-sm font-semibold text-slate-600">Temper :</p>
-        <div className="mb-4 flex flex-wrap items-center gap-2">
-          {listOfTemper?.map((temperament, index) => (
-            <Badge key={index} variant="outline" className="text-slate-700">
-              {temperament}
-            </Badge>
-          ))}
-        </div>
+        <p className="text-sm text-slate-600">
+          <span className="font-semibold">Breed :</span> {breedGroup}
+        </p>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button asChild>

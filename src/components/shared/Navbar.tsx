@@ -36,38 +36,31 @@ import * as React from "react";
 
 const NAVITEMS: { title: string; href: string; description: string }[] = [
   {
-    title: "Dog Page",
+    title: "Dog",
     href: "/dog",
     description: "Fetches data from an external API and displays it in a card.",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Favourites",
+    href: "/favourite",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Displays a list of items that can be added to or removed from a list of favourites.",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    title: "Votes",
+    href: "/vote",
+    description: "Displays a list of items that can be upvoted or downvoted.",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Dog Images",
+    href: "/dog-image",
+    description: "Fetches images from an external API and displays them.",
   },
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
+    title: "Search",
+    href: "/dog-search",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Fetches data from an external API based on user input and displays it in a card.",
   },
 ];
 
@@ -79,8 +72,8 @@ function Navbar() {
           <Link href="/" className="block">
             <Image
               className="h-auto w-[100px]"
-              src="/thubflix.svg"
-              alt="Thubflix Logo"
+              src="/dogland.svg"
+              alt="Dogland Logo"
               width={100}
               height={27}
             />
@@ -96,7 +89,7 @@ function Navbar() {
                         <NavigationMenuLink asChild>
                           <a
                             className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="/"
+                            href="#"
                           >
                             <div className="mb-2 mt-4 text-lg font-medium">
                               shadcn/ui
@@ -109,17 +102,14 @@ function Navbar() {
                           </a>
                         </NavigationMenuLink>
                       </li>
-                      <ListItem href="/docs" title="Introduction">
+                      <ListItem href="#" title="Introduction">
                         Re-usable components built using Radix UI and Tailwind
                         CSS.
                       </ListItem>
-                      <ListItem href="/docs/installation" title="Installation">
+                      <ListItem href="#" title="Installation">
                         How to install dependencies and structure your app.
                       </ListItem>
-                      <ListItem
-                        href="/docs/primitives/typography"
-                        title="Typography"
-                      >
+                      <ListItem href="#" title="Typography">
                         Styles for headings, paragraphs, lists...etc
                       </ListItem>
                     </ul>
@@ -142,7 +132,7 @@ function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/docs" legacyBehavior passHref>
+                  <Link href="#" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
@@ -168,7 +158,7 @@ function Navbar() {
                 <Tabs defaultValue="login" className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="login">Login</TabsTrigger>
-                    <TabsTrigger value="register">Password</TabsTrigger>
+                    <TabsTrigger value="register">Register</TabsTrigger>
                   </TabsList>
                   <TabsContent value="login">
                     <Card>
