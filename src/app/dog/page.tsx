@@ -3,29 +3,11 @@
 import ButtonBack from "@/components/shared/ButtonBack";
 import ItemCard from "@/components/shared/ItemCard";
 import { Button } from "@/components/ui/button";
+import { DogBreeds } from "@/types";
 import { useEffect, useState } from "react";
 
-interface Dogs {
-  bred_for: string;
-  breed_group: string;
-  height: { imperial: string; metric: string };
-  id: number;
-  image: {
-    id: string;
-    width: number;
-    height: number;
-    url: string;
-  };
-  life_span: string;
-  name: string;
-  origin: string;
-  reference_image_id: string;
-  temperament: string;
-  weight: { imperial: string; metric: string };
-}
-
 function Dog() {
-  const [dogs, setDogs] = useState<Dogs[]>([]);
+  const [dogs, setDogs] = useState<DogBreeds[]>([]);
   const [reqLimit, setReqLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -47,10 +29,9 @@ function Dog() {
       );
 
       const data = await response.json();
-      console.log("🚀 ~ fetchDog ~ data:", data);
       setDogs(data);
     } catch (error) {
-      console.error("🚀 ~ fetchDog ~ error", error);
+      throw new Error("Failed to fetch dog");
     } finally {
       setIsLoading(false);
     }
@@ -68,18 +49,21 @@ function Dog() {
         </div>
         <div className="mb-10 grid grid-cols-4 gap-5 sm:grid-cols-12">
           {isLoading && dogs.length === 0 && (
-            <div className="col-span-2 flex items-center justify-center sm:col-span-12">
+            <div className="col-span-full flex items-center justify-center">
               <p className="text-lg font-semibold">Loading...</p>
             </div>
           )}
           {dogs?.map((dog) => (
-            <div className="col-span-4 lg:col-span-3" key={dog?.id}>
+            <div
+              className="col-span-full xs:col-span-2 sm:col-span-6 md:col-span-4 lg:col-span-3"
+              key={dog?.id}
+            >
               <ItemCard
                 id={dog?.id.toString()}
                 name={dog?.name}
                 bredFor={dog?.bred_for ?? "-"}
                 imageUrl={dog?.image?.url}
-                temper={dog?.temperament}
+                origin={dog?.origin ?? ""}
                 breedGroup={dog?.breed_group ?? "-"}
               />
             </div>
