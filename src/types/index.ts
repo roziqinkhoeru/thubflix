@@ -30,4 +30,9 @@ interface DogBreeds extends Dogs {
   image: DogImg;
 }
 
-export type { DogBreeds, DogImages, Dogs };
+interface DogFavorites {
+  id: string;
+  name: string;
+}
+
+export type { DogBreeds, DogFavorites, DogImages, Dogs };
