@@ -11,7 +11,7 @@ function NotFound() {
   const domain = headerList.get("host");
 
   return (
-    <div className="w-full">
+    <div className="min-h-[calc(100svh-12rem)] w-full">
       <div className="container mx-auto mb-40 mt-28 max-w-screen-lg px-4 sm:mt-32">
         <div className="mx-auto mb-8 max-w-3xl">
           <div className="flex w-full justify-center">
