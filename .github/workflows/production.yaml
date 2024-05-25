@@ -13,6 +13,7 @@ on:
 
 jobs:
   Deploy-Production:
+    if: contains(github.event.head_commit.message, '#build')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
