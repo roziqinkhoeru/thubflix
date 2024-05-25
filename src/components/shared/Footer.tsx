@@ -1,7 +1,11 @@
 function Footer() {
   return (
-    <footer className="bg-slate-950">
-      <div className="text-center text-xl text-slate-50">Dogland.</div>
+    <footer className="bg-slate-950 py-4">
+      <section className="container mx-auto max-w-7xl px-6">
+        <p className="text-center text-sm text-slate-50">
+          &copy; {new Date().getFullYear()} Dogland. All rights reserved.
+        </p>
+      </section>
     </footer>
   );
 }
