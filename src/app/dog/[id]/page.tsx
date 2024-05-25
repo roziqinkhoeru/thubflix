@@ -68,7 +68,7 @@ async function page({ params }: { params: { id: string } }) {
   const listOfOrigin = dogs.origin !== "" ? dogs.origin?.split(",") : null;
 
   return (
-    <main className="container mx-auto mt-10 max-w-7xl px-6">
+    <main className="container mx-auto mt-10 max-w-7xl px-6 min-h-svh">
       <div className="my-12">
         <div className="mb-6">
           <ButtonBack />

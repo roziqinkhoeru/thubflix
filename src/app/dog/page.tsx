@@ -42,7 +42,7 @@ function Dog() {
   }, [reqLimit]);
 
   return (
-    <main className="container mx-auto mt-10 max-w-7xl px-6">
+    <main className="container mx-auto mt-10 min-h-svh max-w-7xl px-6">
       <section className="my-12">
         <div className="mb-10">
           <ButtonBack />
