@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "cdn2.thedogapi.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
+        port: "",
+      },
     ],
   },
 };
