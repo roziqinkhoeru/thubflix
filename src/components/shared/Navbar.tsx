@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -82,7 +83,34 @@ function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Home
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/movie" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Movie
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/series" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Series
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>My List</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
@@ -92,58 +120,35 @@ function Navbar() {
                             href="#"
                           >
                             <div className="mb-2 mt-4 text-lg font-medium">
-                              shadcn/ui
+                              Avengers: Endgame
                             </div>
                             <p className="text-sm leading-tight text-muted-foreground">
-                              Beautifully designed components that you can copy
-                              and paste into your apps. Accessible.
-                              Customizable. Open Source.
+                              The Avengers assemble once more in order to undo
+                              Thanos&apos; actions and restore order to the
+                              universe.
                             </p>
                           </a>
                         </NavigationMenuLink>
                       </li>
                       <ListItem href="#" title="Introduction">
-                        Re-usable components built using Radix UI and Tailwind
-                        CSS.
+                        Avengers: Age of Ultron (2015)
                       </ListItem>
                       <ListItem href="#" title="Installation">
-                        How to install dependencies and structure your app.
+                        Avengers: Infinity War (2018)
                       </ListItem>
                       <ListItem href="#" title="Typography">
-                        Styles for headings, paragraphs, lists...etc
+                        Avengers (2012)
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Features</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                      {NAVITEMS.map((navItem) => (
-                        <ListItem
-                          key={navItem.title}
-                          title={navItem.title}
-                          href={navItem.href}
-                        >
-                          {navItem.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="#" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Documentation
-                    </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <div className="">
+          <div className="flex items-center gap-x-4">
+            <Button variant="outline" size="icon">
+              <SearchIcon className="h-4 w-4" />
+            </Button>
             <Dialog>
               <DialogTrigger asChild>
                 <Button>Login</Button>
