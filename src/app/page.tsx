@@ -41,8 +41,8 @@ export default function Home() {
           <div className="flex h-[calc(100svh-10rem)] min-h-96 w-full items-center justify-center">
             <div className="text-center">
               <h1 className="text-2xl font-bold">
-                <span className="text-red-700">Dogland</span>: Discover Dog
-                Breeds
+                <span className="text-red-700">Thubflix</span>: Your ultimate
+                resource for discovering and watching the latest movie trailers.
               </h1>
               <Button asChild className="mt-6">
                 <Link href="/dog">Explore</Link>

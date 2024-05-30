@@ -73,8 +73,8 @@ function Navbar() {
           <Link href="/" className="block">
             <Image
               className="h-auto w-[100px]"
-              src="/dogland.svg"
-              alt="Dogland Logo"
+              src="/thubflix.svg"
+              alt="Thubflix Logo"
               width={100}
               height={27}
             />
