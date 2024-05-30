@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import Footer from "@/components/shared/Footer";
+import Navbar from "@/components/shared/Navbar";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
@@ -76,7 +77,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "h-full min-h-screen w-full overflow-x-hidden bg-background font-sans antialiased",
+          "h-full min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
@@ -86,7 +87,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <Navbar /> */}
+          <Navbar />
           {children}
           <Footer />
         </ThemeProvider>
