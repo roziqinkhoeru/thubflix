@@ -12,30 +12,30 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Dogland | Discover Dog Breeds",
-    template: "%s | Dogland",
+    default: "Thubflix | Discover Movie Trailers",
+    template: "%s | Thubflix",
   },
   description:
-    "Explore Dogland - your ultimate resource for discovering and learning about various dog breeds. Powered by DopAPI.",
+    "Explore Thubflix - your ultimate resource for discovering and watching the latest movie trailers. Powered by TMDB.",
   abstract:
-    "Dogland offers comprehensive information on dog breeds, including characteristics, history, and images, all powered by DopAPI.",
-  applicationName: "Dogland",
+    "Thubflix offers a comprehensive collection of movie trailers, including the latest releases, top-rated films, and much more, all powered by TMDB.",
+  applicationName: "Thubflix",
   keywords:
-    "dog breeds, dog information, canine database, dog photos, pet care, dog characteristics, DopAPI",
+    "movie trailers, film trailers, latest movies, upcoming films, TMDB, Thubflix, movie previews, cinema trailers",
   openGraph: {
-    title: "Dogland",
+    title: "Thubflix",
     description:
-      "Explore Dogland - your ultimate resource for discovering and learning about various dog breeds. Powered by DopAPI.",
-    url: "https://dogland.vercel.app",
-    siteName: "Dogland",
+      "Explore Thubflix - your ultimate resource for discovering and watching the latest movie trailers. Powered by TMDB.",
+    url: "https://thubflix.vercel.app",
+    siteName: "Thubflix",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://dogland.vercel.app/og-image.jpg",
+        url: "/thubflix-square.png",
         width: 1200,
         height: 630,
-        alt: "Dogland - Discover Dog Breeds",
+        alt: "Thubflix - Discover Movie Trailers",
       },
     ],
   },
@@ -51,19 +51,19 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Dogland",
+    title: "Thubflix",
     card: "summary_large_image",
     description:
-      "Explore Dogland - your ultimate resource for discovering and learning about various dog breeds. Powered by DopAPI.",
+      "Explore Thubflix - your ultimate resource for discovering and watching the latest movie trailers. Powered by TMDB.",
     images: [
       {
-        url: "https://dogland.vercel.app/twitter-image.jpg",
-        alt: "Dogland - Discover Dog Breeds",
+        url: "/thubflix-square.png",
+        alt: "Thubflix - Discover Movie Trailers",
       },
     ],
   },
   alternates: {
-    canonical: "https://dogland.vercel.app",
+    canonical: "https://thubflix.vercel.app",
   },
 };
 
