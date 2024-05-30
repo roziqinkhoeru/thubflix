@@ -5,6 +5,8 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   NEXT_PUBLIC_DOG_API: ${{ secrets.NEXT_PUBLIC_DOG_API }}
   NEXT_PUBLIC_DOG_API_KEY: ${{ secrets.NEXT_PUBLIC_DOG_API_KEY }}
+  NEXT_TMDB_API_KEY: ${{ secrets.NEXT_TMDB_API_KEY }}
+  NEXT_TMDB_READ_ACCESS_KEY: ${{ secrets.NEXT_TMDB_READ_ACCESS_KEY }}
 
 on:
   push:
@@ -35,6 +37,8 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           NEXT_PUBLIC_DOG_API: ${{ secrets.NEXT_PUBLIC_DOG_API }}
           NEXT_PUBLIC_DOG_API_KEY: ${{ secrets.NEXT_PUBLIC_DOG_API_KEY }}
+          NEXT_TMDB_API_KEY: ${{ secrets.NEXT_TMDB_API_KEY }}
+          NEXT_TMDB_READ_ACCESS_KEY: ${{ secrets.NEXT_TMDB_READ_ACCESS_KEY }}
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts
@@ -42,4 +46,6 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           NEXT_PUBLIC_DOG_API: ${{ secrets.NEXT_PUBLIC_DOG_API }}
           NEXT_PUBLIC_DOG_API_KEY: ${{ secrets.NEXT_PUBLIC_DOG_API_KEY }}
+          NEXT_TMDB_API_KEY: ${{ secrets.NEXT_TMDB_API_KEY }}
+          NEXT_TMDB_READ_ACCESS_KEY: ${{ secrets.NEXT_TMDB_READ_ACCESS_KEY }}
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}

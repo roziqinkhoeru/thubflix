@@ -19,8 +19,17 @@ const config = {
       },
     },
     extend: {
+      aspectRatio: {
+        "poster-movie": "2/3",
+      },
+      flex: {
+        full: "0 0 100%",
+      },
       screens: {
         xs: "480px",
+      },
+      spacing: {
+        18: "4.5rem",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
@@ -81,7 +90,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 } satisfies Config;
 
 export default config;
