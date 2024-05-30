@@ -23,7 +23,6 @@ function Favourite() {
         },
       );
       const data = await response.json();
-      console.log("🚀 ~ fetchFavorite ~ data:", data);
       setFavorite(data);
     } catch (error) {
       throw new Error("Failed to fetch favourite");
